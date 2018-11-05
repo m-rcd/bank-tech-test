@@ -25,7 +25,8 @@ describe Account do
       account.deposit(1000)
       expect(account.transactions).to include(date: '19/09/2018',
                                               credit: '1000.00',
-                                              balance: '1000.00')
+                                              balance: '1000.00',
+                                              type: 'credit')
     end
   end
 
@@ -44,7 +45,8 @@ describe Account do
       account.withdraw(500)
       expect(account.transactions).to include(date: '19/09/2018',
                                               debit: '500.00',
-                                              balance: '500.00')
+                                              balance: '500.00',
+                                              type: 'debit')
     end
 
     it 'raises an error if balance less than withdraw amount' do

@@ -12,7 +12,8 @@ class Account
     @balance += amount
     @transactions << { date: date_today,
                        credit: format_price(amount),
-                       balance: format_price(@balance) }
+                       balance: format_price(@balance),
+                       type: 'credit' }
   end
 
   def withdraw(amount)
@@ -20,7 +21,8 @@ class Account
     @balance -= amount
     @transactions << { date: date_today,
                        debit: format_price(amount),
-                       balance: format_price(@balance) }
+                       balance: format_price(@balance),
+                       type: 'debit' }
   end
 
   private
