@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'date'
 
 class Account
@@ -27,7 +28,7 @@ class Account
   end
 
   def print_statement
-    @statement.return_statement(@transactions)
+    puts @statement.return_statement(@transactions)
   end
 
   private

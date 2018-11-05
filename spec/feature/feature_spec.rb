@@ -1,7 +1,5 @@
-# frozen_string_literal: true
-
-require 'account'
-require 'statement'
+require 'bank_account'
+require 'account_statement'
 
 describe 'Features Account' do
   describe 'User can make transactions' do
@@ -25,13 +23,13 @@ describe 'Features Account' do
     end
   end
 
-  describe 'Statement' do
+  describe 'User can print account statement' do
     context 'before any transaction' do
       it 'can print empty statement' do
         account = Account.new
 
-        expect(account.print_statement).to eq('Date || Credit || Debit ||'\
-          ' Balance ')
+        expect { account.print_statement }.to output('Date || Credit || Debit ||'\
+          " Balance\n").to_stdout
       end
     end
 
@@ -42,8 +40,8 @@ describe 'Features Account' do
           allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
           account.deposit(1000)
 
-          expect(account.print_statement).to eq('Date || Credit || Debit ||'\
-            " Balance \n 19/09/2018 || 1000.00 || || 1000.00")
+          expect { account.print_statement }.to output('Date || Credit || Debit ||'\
+            " Balance\n19/09/2018 || 1000.00 || || 1000.00\n").to_stdout
         end
       end
 
@@ -54,9 +52,9 @@ describe 'Features Account' do
           account.deposit(1000)
           account.withdraw(500)
 
-          expect(account.print_statement).to eq('Date || Credit || Debit ||'\
-            " Balance \n 19/09/2018 || 1000.00 || || 1000.00 \n 19/09/2018 ||"\
-            ' || 500.00 || 500.00')
+          expect { account.print_statement }.to output('Date || Credit || Debit ||'\
+            " Balance\n19/09/2018 || 1000.00 || || 1000.00\n19/09/2018 ||"\
+            " || 500.00 || 500.00\n").to_stdout
         end
       end
     end

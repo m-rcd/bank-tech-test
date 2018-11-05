@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-require 'statement'
+require 'account_statement'
 
 describe Statement do
   subject(:statement) { described_class.new }
@@ -22,15 +20,15 @@ describe Statement do
   context 'before any transaction' do
     it 'prints empty statement' do
       expect(statement.return_statement(empty_account.transactions)).to eq('Date'\
-       ' || Credit || Debit || Balance ')
+       " || Credit || Debit || Balance")
     end
   end
 
   context 'after deposit' do
     it 'prints statement with deposit transaction' do
       expect(statement.return_statement(credit_account.transactions)).to eq(
-        "Date || Credit || Debit || Balance \n 19/11/2018 || 1000.00 || ||"\
-        ' 1000.00'
+        "Date || Credit || Debit || Balance\n19/11/2018 || 1000.00 || ||"\
+        " 1000.00\n"
       )
     end
   end
@@ -38,8 +36,8 @@ describe Statement do
   context 'after withdrawal' do
     it 'prints statement with withdrawal transaction' do
       expect(statement.return_statement(debit_account.transactions)).to eq(
-        "Date || Credit || Debit || Balance \n 19/11/2018 || 1000.00 || "\
-        "|| 1000.00 \n 19/11/2018 || || 500.00 || 500.00"
+        "Date || Credit || Debit || Balance\n19/11/2018 || 1000.00 || "\
+        "|| 1000.00\n19/11/2018 || || 500.00 || 500.00"
       )
     end
   end

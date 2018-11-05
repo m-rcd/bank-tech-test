@@ -1,12 +1,10 @@
-# frozen_string_literal: true
-
-require 'account'
+require 'bank_account'
 
 describe Account do
   subject(:account) { described_class.new }
   subject(:statement) do
     double('statement', return_statement: 'Date || Credit'\
-   " || Debit || Balance \n 19/09/2018 || 1000.00 || || 1000.00")
+   " || Debit || Balance\n19/09/2018 || 1000.00 || || 1000.00\n")
   end
 
   context '#deposit' do
@@ -40,8 +38,8 @@ describe Account do
       allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
       account2.deposit(1000)
 
-      expect(account2.print_statement).to eq('Date || Credit || Debit ||'\
-            " Balance \n 19/09/2018 || 1000.00 || || 1000.00")
+      expect { account2.print_statement }.to output('Date || Credit || Debit '\
+        "|| Balance\n19/09/2018 || 1000.00 || || 1000.00\n").to_stdout
     end
   end
 end
