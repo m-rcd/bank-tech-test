@@ -30,11 +30,12 @@ So that I can spend money
 I can withdraw money from my account
 ```
 
-````
+```
 As a user
 So that I can check my account history
 I can print a statement showing all my transactions
 ```
+
 
 ##  <a name="running-the-app">**Running the app**</a>
 
