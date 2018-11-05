@@ -11,6 +11,8 @@ This project was created for a technical test challenge at Makers Academy.
 
 ##  <a name="build-status">**Build Status**</a>
 
+[![Build Status](https://travis-ci.org/m-rcd/bank-tech-test.svg?branch=master)](https://travis-ci.org/m-rcd/bank-tech-test)
+
 ##  <a name="technologies">**Technologies**</a>
 
 - Ruby
