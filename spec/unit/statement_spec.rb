@@ -5,28 +5,34 @@ require 'statement'
 describe Statement do
   subject(:statement) { described_class.new }
   subject(:empty_account) { double('account', transactions: [])}
-  subject(:credit_account) { double('account', transactions: [{date: '19/11/2018', credit: '1000.00', balance: '1000.00', type: 'credit'}]) }
-  subject(:debit_account) { double('account', transactions: [{date: '19/11/2018', credit: '1000.00', balance: '1000.00', type: 'credit'}, {date: '19/11/2018', debit: '500.00', balance: '500.00', type: 'debit'}]) }
-
-  it 'has a header' do
-   expect(statement.header).to eq('Date || Credit || Debit || Balance ')
-  end
+  subject(:credit_account) { double('account', transactions: [
+    { date: '19/11/2018', credit: '1000.00', balance: '1000.00',
+      type: 'credit' }]) }
+  subject(:debit_account) { double('account', transactions: [
+    { date: '19/11/2018', credit: '1000.00', balance: '1000.00',
+      type: 'credit'}, {date: '19/11/2018', debit: '500.00',
+      balance: '500.00', type: 'debit'}]) }
 
  context 'before any transaction' do
    it 'prints empty statement' do
-     expect(statement.print_statement(empty_account.transactions)).to eq('Date || Credit || Debit || Balance ')
+     expect(statement.print_statement(empty_account.transactions)).to eq('Date'\
+       ' || Credit || Debit || Balance ')
    end
  end
 
  context 'after deposit' do
    it 'prints statement with deposit transaction' do
-     expect(statement.print_statement(credit_account.transactions)).to eq("Date || Credit || Debit || Balance \n 19/11/2018 || 1000.00 || || 1000.00")
+     expect(statement.print_statement(credit_account.transactions)).to eq(
+       "Date || Credit || Debit || Balance \n 19/11/2018 || 1000.00 || ||"\
+      " 1000.00")
    end
  end
 
  context 'after withdrawal' do
    it 'prints statement with withdrawal transaction' do
-     expect(statement.print_statement(debit_account.transactions)).to eq("Date || Credit || Debit || Balance \n 19/11/2018 || 1000.00 || || 1000.00 \n 19/11/2018 || || 500.00 || 500.00")
+     expect(statement.print_statement(debit_account.transactions)).to eq("Date"\
+       " || Credit || Debit || Balance \n 19/11/2018 || 1000.00 || || 1000.00"\
+       " \n 19/11/2018 || || 500.00 || 500.00")
    end
  end
 end

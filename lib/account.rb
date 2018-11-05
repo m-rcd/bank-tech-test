@@ -18,7 +18,6 @@ class Account
   end
 
   def withdraw(amount)
-    raise 'Not enough money in your account!' if amount > @balance
     @balance -= amount
     @transactions << { date: date_today,
                        debit: format_price(amount),
@@ -29,7 +28,7 @@ class Account
   def get_statement
     @statement.print_statement(@transactions)
   end
-  
+
   private
 
   def date_today

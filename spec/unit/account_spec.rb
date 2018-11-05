@@ -4,26 +4,14 @@ require 'account'
 
 describe Account do
   subject(:account) { described_class.new }
-  subject(:statement) {double('statement', print_statement: "Date || Credit || Debit || Balance \n 19/09/2018 || 1000.00 || || 1000.00")}
-  context '#initialize' do
-    it 'starts with an empty balance' do
-      expect(account.balance).to eq(0)
-    end
-
-    it 'starts with an empty transactions array' do
-      expect(account.transactions).to be_empty
-    end
-  end
+  subject(:statement) {double('statement', print_statement: "Date || Credit"\
+    " || Debit || Balance \n 19/09/2018 || 1000.00 || || 1000.00")}
 
   context '#deposit' do
-    it 'should increase balance' do
-      account.deposit(1000)
-      expect(account.balance).to eq(1000)
-    end
-
     it 'should save the deposit transaction to transactions array' do
       allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
       account.deposit(1000)
+
       expect(account.transactions).to include(date: '19/09/2018',
                                               credit: '1000.00',
                                               balance: '1000.00',
@@ -32,28 +20,17 @@ describe Account do
   end
 
   context '#Withdraw' do
-    before(:each) do
+    it 'should save the transaction to transactions array' do
       allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
       account.deposit(1000)
-    end
-
-    it 'should decrease balance' do
       account.withdraw(500)
-      expect(account.balance).to eq(500)
-    end
 
-    it 'should save the transaction to transactions array' do
-      account.withdraw(500)
       expect(account.transactions).to include(date: '19/09/2018',
                                               debit: '500.00',
                                               balance: '500.00',
                                               type: 'debit')
     end
 
-    it 'raises an error if balance less than withdraw amount' do
-      expect { account.withdraw(1200) }.to raise_error('Not enough '\
-        'money in your account!')
-    end
   end
 
   context '#get_statement' do
@@ -61,7 +38,9 @@ describe Account do
       account2 = Account.new(statement)
       allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
       account2.deposit(1000)
-      expect(account2.get_statement).to eq("Date || Credit || Debit || Balance \n 19/09/2018 || 1000.00 || || 1000.00")
+
+      expect(account2.get_statement).to eq("Date || Credit || Debit || Balance"\
+        " \n 19/09/2018 || 1000.00 || || 1000.00")
     end
   end
 end
