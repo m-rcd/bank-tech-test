@@ -1,22 +1,23 @@
-class Statement
+# frozen_string_literal: true
 
-  def print_statement(transactions)
+class Statement
+  def return_statement(transactions)
     statement = header
     transactions.each do |transaction|
       if transaction[:type] == 'credit'
         statement += "\n #{transaction[:date]} || #{transaction[:credit]} ||"\
-        " || #{transaction[:balance] }"
+        " || #{transaction[:balance]}"
       elsif transaction[:type] == 'debit'
         statement += " \n #{transaction[:date]} || || #{transaction[:debit]}"\
-        " || #{transaction[:balance] }"
+        " || #{transaction[:balance]}"
       end
     end
-   return statement
- end
+    statement
+  end
 
- private
+  private
 
   def header
-    return 'Date || Credit || Debit || Balance '
+    'Date || Credit || Debit || Balance '
   end
 end

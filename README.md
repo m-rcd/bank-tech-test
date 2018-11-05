@@ -4,7 +4,7 @@
 
 ```
 As a user
-So that I can save my money in one place
+So that I can save money
 I can deposit money in my account
 ```
 
@@ -16,8 +16,8 @@ I can withdraw money from my account
 
 ````
 As a user
-So that I can make sure retrace my spending
-I can print a statements showing my actions
+So that I can check my account history
+I can print a statement showing my transaction
 ```
 
 ## Technologies

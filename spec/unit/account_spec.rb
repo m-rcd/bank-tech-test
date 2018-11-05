@@ -4,8 +4,10 @@ require 'account'
 
 describe Account do
   subject(:account) { described_class.new }
-  subject(:statement) {double('statement', print_statement: "Date || Credit"\
-    " || Debit || Balance \n 19/09/2018 || 1000.00 || || 1000.00")}
+  subject(:statement) do
+    double('statement', return_statement: 'Date || Credit'\
+   " || Debit || Balance \n 19/09/2018 || 1000.00 || || 1000.00")
+  end
 
   context '#deposit' do
     it 'should save the deposit transaction to transactions array' do
@@ -30,17 +32,16 @@ describe Account do
                                               balance: '500.00',
                                               type: 'debit')
     end
-
   end
 
-  context '#get_statement' do
+  context '#print_statement' do
     it 'should be able to get statement' do
       account2 = Account.new(statement)
       allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
       account2.deposit(1000)
 
-      expect(account2.get_statement).to eq("Date || Credit || Debit || Balance"\
-        " \n 19/09/2018 || 1000.00 || || 1000.00")
+      expect(account2.print_statement).to eq('Date || Credit || Debit ||'\
+            " Balance \n 19/09/2018 || 1000.00 || || 1000.00")
     end
   end
 end

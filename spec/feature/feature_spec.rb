@@ -30,8 +30,8 @@ describe 'Features Account' do
       it 'can print empty statement' do
         account = Account.new
 
-        expect(account.get_statement).to eq("Date || Credit || Debit ||"\
-          " Balance ")
+        expect(account.print_statement).to eq('Date || Credit || Debit ||'\
+          ' Balance ')
       end
     end
 
@@ -42,7 +42,7 @@ describe 'Features Account' do
           allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
           account.deposit(1000)
 
-          expect(account.get_statement).to eq("Date || Credit || Debit ||"\
+          expect(account.print_statement).to eq('Date || Credit || Debit ||'\
             " Balance \n 19/09/2018 || 1000.00 || || 1000.00")
         end
       end
@@ -53,9 +53,10 @@ describe 'Features Account' do
           allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
           account.deposit(1000)
           account.withdraw(500)
-          expect(account.get_statement).to eq("Date || Credit || Debit ||"\
+
+          expect(account.print_statement).to eq('Date || Credit || Debit ||'\
             " Balance \n 19/09/2018 || 1000.00 || || 1000.00 \n 19/09/2018 ||"\
-            " || 500.00 || 500.00")
+            ' || 500.00 || 500.00')
         end
       end
     end
