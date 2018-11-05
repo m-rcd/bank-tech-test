@@ -10,7 +10,7 @@ class Account
 
   def deposit(amount)
     @balance += amount
-    @transactions << { date: format_date(Date.today),
+    @transactions << { date: date_today,
                        credit: format_price(amount),
                        balance: format_price(@balance) }
   end
@@ -18,15 +18,15 @@ class Account
   def withdraw(amount)
     raise 'Not enough money in your account!' if amount > @balance
     @balance -= amount
-    @transactions << { date: format_date(Date.today),
+    @transactions << { date: date_today,
                        debit: format_price(amount),
                        balance: format_price(@balance) }
   end
 
   private
 
-  def format_date(date)
-    date.strftime('%d/%m/%Y')
+  def date_today
+    Date.today.strftime('%d/%m/%Y')
   end
 
   def format_price(price)
