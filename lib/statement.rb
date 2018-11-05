@@ -5,10 +5,10 @@ class Statement
   end
 
   def print_statement(transactions)
-    statement = header + '\n'
+    statement = header
     transactions.each do |transaction|
-    statement += " #{transaction[:date]} || #{transaction[:credit]} || || #{transaction[:balance]}"
-    return statement
+      statement += "\n #{transaction[:date]} || #{transaction[:credit]} || || #{transaction[:balance] }"
     end
+    return statement
   end
 end

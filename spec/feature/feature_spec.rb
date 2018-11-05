@@ -22,13 +22,21 @@ describe 'User can make transactions' do
 end
 
 describe 'Account statement' do
+  context 'Before any transaction' do
+    it 'should print empty statement' do
+      account = Account.new
+      statement = Statement.new
+      expect(statement.print_statement(account.transactions)).to eq('Date || Credit || Debit || Balance ')
+    end
+  end
+  
   context 'After a deposit' do
     it 'should be able to print statement' do
       account = Account.new
       allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
       account.deposit(1000)
       statement = Statement.new
-      expect(statement.print_statement(account.transactions)).to eq('Date || Credit || Debit || Balance \n 19/09/2018 || 1000.00 || || 1000.00')
+      expect(statement.print_statement(account.transactions)).to eq("Date || Credit || Debit || Balance \n 19/09/2018 || 1000.00 || || 1000.00")
     end
   end
 end
