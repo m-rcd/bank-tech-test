@@ -3,9 +3,10 @@
 class Account
   attr_reader :balance, :transactions
 
-  def initialize
+  def initialize(statement = Statement)
     @balance = 0
     @transactions = []
+    @statement = Statement.new
   end
 
   def deposit(amount)
@@ -25,6 +26,10 @@ class Account
                        type: 'debit' }
   end
 
+  def get_statement
+    @statement.print_statement(@transactions)
+  end
+  
   private
 
   def date_today

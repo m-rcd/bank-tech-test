@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 require 'account'
+require 'statement'
 
-describe 'User can make transactions' do
+describe Account do
   context 'Deposit' do
     it 'should be able to deposit money in account' do
       account = Account.new
@@ -19,9 +20,18 @@ describe 'User can make transactions' do
       expect(account.balance).to eq(500)
     end
   end
+
+  context 'Statement' do
+    it 'should be able to get statement' do
+      account = Account.new
+      allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
+      account.deposit(1000)
+      expect(account.get_statement).to eq("Date || Credit || Debit || Balance \n 19/09/2018 || 1000.00 || || 1000.00")
+    end
+  end
 end
 
-describe 'Account statement' do
+describe Statement do
   context 'Before any transaction' do
     it 'should print empty statement' do
       account = Account.new

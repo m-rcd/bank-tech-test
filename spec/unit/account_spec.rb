@@ -4,6 +4,7 @@ require 'account'
 
 describe Account do
   subject(:account) { described_class.new }
+  subject(:statement) {double('statement', print_statement: "Date || Credit || Debit || Balance \n 19/09/2018 || 1000.00 || || 1000.00")}
   context '#initialize' do
     it 'starts with an empty balance' do
       expect(account.balance).to eq(0)
@@ -52,6 +53,15 @@ describe Account do
     it 'raises an error if balance less than withdraw amount' do
       expect { account.withdraw(1200) }.to raise_error('Not enough '\
         'money in your account!')
+    end
+  end
+
+  context '#get_statement' do
+    it 'should be able to get statement' do
+      account2 = Account.new(statement)
+      allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
+      account2.deposit(1000)
+      expect(account2.get_statement).to eq("Date || Credit || Debit || Balance \n 19/09/2018 || 1000.00 || || 1000.00")
     end
   end
 end
