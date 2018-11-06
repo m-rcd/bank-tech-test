@@ -70,14 +70,33 @@ I can print a statement showing all my transactions
 
   Here is an example:
 
-  (To be added)
-
+  ```rb
+  [1] pry(main)> require './lib/account.rb'
+=> true
+[2] pry(main)> require './lib/statement.rb'
+=> true
+[3] pry(main)> account = Account.new
+=> #<Account:0x00007fcd050883b8 @balance=0, @statement=#<Statement:0x00007fcd050882f0>, @transactions=[]>
+[4] pry(main)> account.deposit(1000)
+=> [{:date=>"06/11/2018", :credit=>"1000.00", :balance=>"1000.00", :type=>"credit"}]
+[5] pry(main)> account.deposit(2000)
+=> [{:date=>"06/11/2018", :credit=>"1000.00", :balance=>"1000.00", :type=>"credit"}, {:date=>"06/11/2018", :credit=>"2000.00", :balance=>"3000.00", :type=>"credit"}]
+[6] pry(main)> account.withdraw(500)
+=> [{:date=>"06/11/2018", :credit=>"1000.00", :balance=>"1000.00", :type=>"credit"},
+ {:date=>"06/11/2018", :credit=>"2000.00", :balance=>"3000.00", :type=>"credit"},
+ {:date=>"06/11/2018", :debit=>"500.00", :balance=>"2500.00", :type=>"debit"}]
+[7] pry(main)> account.print_statement
+Date || Credit || Debit || Balance
+06/11/2018 || || 500.00 || 2500.00
+06/11/2018 || 2000.00 || || 3000.00
+06/11/2018 || 1000.00 || || 1000.00
+```
 
 ##  <a name="running-tests">**Running tests**</a>
 
 Run `rspec` in your terminal
 
-(screenshot of tests to be added)
+![tests](test.png)
 
 ##  <a name="contributing">**Contributing**</a>
 

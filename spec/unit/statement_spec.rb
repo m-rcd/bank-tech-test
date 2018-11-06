@@ -1,4 +1,4 @@
-require 'account_statement'
+require 'statement'
 
 describe Statement do
   subject(:statement) { described_class.new }

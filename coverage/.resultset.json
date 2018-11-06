@@ -65,7 +65,7 @@
         null,
         null
       ],
-      "/Users/mariannerachid/code/makers/course/week10/bank-tech-test/lib/bank_account.rb": [
+      "/Users/mariannerachid/code/makers/course/week10/bank-tech-test/lib/account.rb": [
         1,
         null,
         1,
@@ -115,7 +115,7 @@
         null,
         null
       ],
-      "/Users/mariannerachid/code/makers/course/week10/bank-tech-test/lib/account_statement.rb": [
+      "/Users/mariannerachid/code/makers/course/week10/bank-tech-test/lib/statement.rb": [
         1,
         1,
         6,
@@ -276,6 +276,6 @@
         null
       ]
     },
-    "timestamp": 1541498023
+    "timestamp": 1541498595
   }
 }

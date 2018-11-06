@@ -1,5 +1,5 @@
-require 'bank_account'
-require 'account_statement'
+require 'account'
+require 'statement'
 
 describe 'Features Account' do
   describe 'User can make transactions' do
