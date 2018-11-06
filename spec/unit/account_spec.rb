@@ -17,6 +17,20 @@ describe Account do
                                               balance: '1000.00',
                                               type: 'credit')
     end
+
+    context 'Edge cases' do
+      it 'should raise an error if user insert a string' do
+        error = 'Deposit cannot be a string!'
+
+        expect{ account.deposit('1000') }.to raise_error(error)
+      end
+
+      it 'should raise an error if user insert a negative amount' do
+        error = 'Deposit cannot be negative!'
+
+        expect{ account.deposit(-100) }.to raise_error(error)
+      end
+    end
   end
 
   context '#Withdraw' do
@@ -29,6 +43,32 @@ describe Account do
                                               debit: '500.00',
                                               balance: '500.00',
                                               type: 'debit')
+    end
+
+    context 'Edge cases' do
+      it 'should raise error if amount is more than available money in account' do
+        allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
+        account.deposit(1000)
+        error = 'Not enough money in your account!'
+
+        expect{ account.withdraw(1200) }.to raise_error(error)
+      end
+
+      it 'should raise error if amount is string' do
+        allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
+        account.deposit(1000)
+        error = 'Withdrawal amount cannot be a string!'
+
+        expect{ account.withdraw('500') }.to raise_error(error)
+      end
+
+      it 'should raise error if amount is negative' do
+        allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
+        account.deposit(1000)
+        error = 'Withdrawal amount cannot be negative!'
+
+        expect{ account.withdraw(-500) }.to raise_error(error)
+      end
     end
   end
 

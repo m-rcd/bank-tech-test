@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'date'
 
 class Account
@@ -12,6 +10,8 @@ class Account
   end
 
   def deposit(amount)
+    raise 'Deposit cannot be a string!' if amount.kind_of? String
+    raise 'Deposit cannot be negative!' if amount < 0
     @balance += amount
     @transactions << { date: date_today,
                        credit: format_price(amount),
@@ -20,6 +20,9 @@ class Account
   end
 
   def withdraw(amount)
+    raise 'Withdrawal amount cannot be a string!' if amount.kind_of? String
+    raise 'Not enough money in your account!' if amount > @balance
+    raise 'Withdrawal amount cannot be negative!' if amount < 0
     @balance -= amount
     @transactions << { date: date_today,
                        debit: format_price(amount),
