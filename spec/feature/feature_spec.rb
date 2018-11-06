@@ -1,6 +1,5 @@
 require 'account'
 require 'statement'
-require 'transactions'
 
 describe 'Features Account' do
   describe 'User can make transactions' do

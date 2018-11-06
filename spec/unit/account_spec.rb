@@ -1,22 +1,12 @@
 require 'account'
 
 describe Account do
-  subject(:transactions) do
-    double('transactions', history: [], add_deposit: { date: '19/09/2018',
-                                            credit: '1000.00',
-                                            balance: '1000.00',
-                                            type: 'credit' },
-                                      add_withdrawal: { date: '19/09/2018',
-                                            debit: '500.00',
-                                            balance: '500.00',
-                                            type: 'debit' })
-  end
 
   subject(:statement) do
     double('statement', return_statement: 'Date || Credit'\
       " || Debit || Balance\n19/09/2018 || 1000.00 || || 1000.00\n")
   end
-  subject(:account) { described_class.new(statement, transactions) }
+  subject(:account) { described_class.new(statement) }
 
   context '#deposit' do
     it 'should increase balance' do

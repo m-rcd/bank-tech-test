@@ -1,13 +1,16 @@
 class Statement
   def return_statement(history)
-    statement = header
+    statement = 'Date || Credit || Debit || Balance'
     history.reverse_each do |transaction|
+      date = format_date(transaction[:date])
+      balance = format_price(transaction[:balance])
+      
       if credit?(transaction)
-        statement += "\n#{transaction[:date]} || #{transaction[:credit]} ||"\
-        " || #{transaction[:balance]}"
+        credit = format_price(transaction[:credit])
+        statement += "\n#{date} || #{credit} || || #{balance}"
       else
-        statement += "\n#{transaction[:date]} || || #{transaction[:debit]}"\
-        " || #{transaction[:balance]}"
+        debit = format_price(transaction[:debit])
+        statement += "\n#{date} || || #{debit} || #{balance}"
       end
     end
     statement
@@ -15,8 +18,12 @@ class Statement
 
   private
 
-  def header
-    'Date || Credit || Debit || Balance'
+  def format_date(date)
+    date.strftime('%d/%m/%Y')
+  end
+
+  def format_price(price)
+    format('%.2f', price)
   end
 
   def credit?(transaction)

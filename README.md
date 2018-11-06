@@ -55,19 +55,17 @@ I can print a statement showing all my transactions
 => true
 [2] pry(main)> require './lib/statement.rb'
 => true
-[3] pry(main)> require './lib/transactions.rb'
-=> true
-[4] pry(main)> account = Account.new
+[3] pry(main)> account = Account.new
 => #<Account:0x00007fe47c0dcd30 @balance=0, @statement=#<Statement:0x00007fe47c0dcd08>, @transactions=#<Transactions:0x00007fe47c0dcce0 @history=[]>>
-[5] pry(main)> account.deposit(1000)
+[4] pry(main)> account.deposit(1000)
 => [{:date=>"06/11/2018", :credit=>"1000.00", :balance=>"1000.00", :type=>"credit"}]
-[6] pry(main)> account.deposit(2000)
+[5] pry(main)> account.deposit(2000)
 => [{:date=>"06/11/2018", :credit=>"1000.00", :balance=>"1000.00", :type=>"credit"}, {:date=>"06/11/2018", :credit=>"2000.00", :balance=>"3000.00", :type=>"credit"}]
-[7] pry(main)> account.withdraw(500)
+[6] pry(main)> account.withdraw(500)
 => [{:date=>"06/11/2018", :credit=>"1000.00", :balance=>"1000.00", :type=>"credit"},
  {:date=>"06/11/2018", :credit=>"2000.00", :balance=>"3000.00", :type=>"credit"},
  {:date=>"06/11/2018", :debit=>"500.00", :balance=>"2500.00", :type=>"debit"}]
-[8] pry(main)> account.print_statement
+[7] pry(main)> account.print_statement
 Date || Credit || Debit || Balance
 06/11/2018 || || 500.00 || 2500.00
 06/11/2018 || 2000.00 || || 3000.00
@@ -78,7 +76,7 @@ Date || Credit || Debit || Balance
 
 Run `rspec` in your terminal
 
-![tests](rspec.png)
+![tests](tests.png)
 
 ##  <a name="approach">**Approach**</a>
 
