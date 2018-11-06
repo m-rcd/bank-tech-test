@@ -6,8 +6,8 @@ describe 'Features Account' do
   describe 'User can make transactions' do
     context 'Deposit' do
       it 'should be able to deposit money in account' do
-        transactions = Transactions.new
-        account = Account.new(transactions)
+
+        account = Account.new
         account.deposit(1000)
 
         expect(account.balance).to eq(1000)
@@ -16,8 +16,8 @@ describe 'Features Account' do
 
     context 'Withdraw' do
       it 'should be able to withdraw money from account' do
-        transactions = Transactions.new
-        account = Account.new(transactions)
+
+        account = Account.new
         account.deposit(1000)
         account.withdraw(500)
 
@@ -29,8 +29,7 @@ describe 'Features Account' do
   describe 'User can print account statement' do
     context 'before any transaction' do
       it 'can print empty statement' do
-        transactions = Transactions.new
-        account = Account.new(transactions)
+        account = Account.new
 
         expect { account.print_statement }.to output('Date || Credit || Debit'\
           " || Balance\n").to_stdout
@@ -40,8 +39,7 @@ describe 'Features Account' do
     context 'after transactions' do
       context 'After a deposit' do
         it 'can print statement with deposit transaction' do
-          transactions = Transactions.new
-          account = Account.new(transactions)
+          account = Account.new
           allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
           account.deposit(1000)
 
@@ -52,8 +50,7 @@ describe 'Features Account' do
 
       context 'After a withdrawal' do
         it 'can print statement with deposit and withdrawal transactions' do
-          transactions = Transactions.new
-          account = Account.new(transactions)
+          account = Account.new
           allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
           account.deposit(1000)
           account.withdraw(500)

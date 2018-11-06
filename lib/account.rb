@@ -3,7 +3,7 @@ require 'date'
 class Account
   attr_reader :balance, :transactions
 
-  def initialize(statement = Statement.new, transactions)
+  def initialize(statement = Statement.new, transactions = Transactions.new)
     @balance = 0
     @transactions = transactions
     @statement = statement
