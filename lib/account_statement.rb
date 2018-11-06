@@ -1,7 +1,7 @@
 class Statement
   def return_statement(transactions)
     statement = header
-    transactions.reverse.each do |transaction|
+    transactions.reverse_each do |transaction|
       if credit?(transaction)
         statement += "\n#{transaction[:date]} || #{transaction[:credit]} ||"\
         " || #{transaction[:balance]}"

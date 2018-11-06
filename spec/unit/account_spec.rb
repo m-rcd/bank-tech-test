@@ -22,13 +22,13 @@ describe Account do
       it 'should raise an error if user insert a string' do
         error = 'Deposit cannot be a string!'
 
-        expect{ account.deposit('1000') }.to raise_error(error)
+        expect { account.deposit('1000') }.to raise_error(error)
       end
 
       it 'should raise an error if user insert a negative amount' do
         error = 'Deposit cannot be negative!'
 
-        expect{ account.deposit(-100) }.to raise_error(error)
+        expect { account.deposit(-100) }.to raise_error(error)
       end
     end
   end
@@ -51,7 +51,7 @@ describe Account do
         account.deposit(1000)
         error = 'Not enough money in your account!'
 
-        expect{ account.withdraw(1200) }.to raise_error(error)
+        expect { account.withdraw(1200) }.to raise_error(error)
       end
 
       it 'should raise error if amount is string' do
@@ -59,7 +59,7 @@ describe Account do
         account.deposit(1000)
         error = 'Withdrawal amount cannot be a string!'
 
-        expect{ account.withdraw('500') }.to raise_error(error)
+        expect { account.withdraw('500') }.to raise_error(error)
       end
 
       it 'should raise error if amount is negative' do
@@ -67,7 +67,7 @@ describe Account do
         account.deposit(1000)
         error = 'Withdrawal amount cannot be negative!'
 
-        expect{ account.withdraw(-500) }.to raise_error(error)
+        expect { account.withdraw(-500) }.to raise_error(error)
       end
     end
   end
