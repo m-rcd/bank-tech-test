@@ -43,6 +43,8 @@ I can print a statement showing all my transactions
 
 - Clone this repository
 
+- Run `bundle install`
+
 - In the command line, run `pry` or `irb`
 
 
