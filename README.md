@@ -17,6 +17,8 @@ This project was created for a technical test challenge at Makers Academy.
 
 - Ruby
 - RSpec
+- Rubocop
+- Simplecov
 
 ##  <a name="user-stories">**User stories**</a>
 
