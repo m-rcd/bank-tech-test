@@ -12,7 +12,7 @@ class Account
   def deposit(amount)
     raise 'Deposit cannot be a string!' if amount.kind_of? String
     raise 'Deposit cannot be negative!' if amount.negative?
-    
+
     @balance += amount
     @transactions << { date: date_today,
                        credit: format_price(amount),

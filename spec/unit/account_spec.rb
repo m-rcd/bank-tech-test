@@ -46,7 +46,7 @@ describe Account do
     end
 
     context 'Edge cases' do
-      it 'should raise error if amount is more than available money in account' do
+      it 'should raise error if amount more than available money in account' do
         allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
         account.deposit(1000)
         error = 'Not enough money in your account!'
