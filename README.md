@@ -70,7 +70,7 @@ I can print a statement showing all my transactions
 
   Here is an example:
 
-  ```rb
+```rb
   [1] pry(main)> require './lib/account.rb'
 => true
 [2] pry(main)> require './lib/statement.rb'
