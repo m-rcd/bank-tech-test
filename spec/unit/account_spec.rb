@@ -1,7 +1,18 @@
 require 'account'
 
 describe Account do
-  subject(:account) { described_class.new }
+  subject(:transactions) do
+    double('transactions', history: [], add_deposit: { date: '19/09/2018',
+                                            credit: '1000.00',
+                                            balance: '1000.00',
+                                            type: 'credit' },
+                                      add_withdrawal: { date: '19/09/2018',
+                                            debit: '500.00',
+                                            balance: '500.00',
+                                            type: 'debit' })
+  end
+  
+  subject(:account) { described_class.new(transactions) }
   subject(:statement) do
     double('statement', return_statement: 'Date || Credit'\
    " || Debit || Balance\n19/09/2018 || 1000.00 || || 1000.00\n")
@@ -10,12 +21,11 @@ describe Account do
   context '#deposit' do
     it 'should save the transaction to transactions array' do
       allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
-      account.deposit(1000)
 
-      expect(account.transactions).to include(date: '19/09/2018',
+      expect(account.deposit(1000)).to eq({ date: '19/09/2018',
                                               credit: '1000.00',
                                               balance: '1000.00',
-                                              type: 'credit')
+                                              type: 'credit' })
     end
 
     context 'Edge cases' do
@@ -34,15 +44,14 @@ describe Account do
   end
 
   context '#Withdraw' do
-    it 'should save the transaction to transactions array' do
+    it 'should return a hash with ' do
       allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
       account.deposit(1000)
-      account.withdraw(500)
 
-      expect(account.transactions).to include(date: '19/09/2018',
+      expect(account.withdraw(500)).to eq({ date: '19/09/2018',
                                               debit: '500.00',
                                               balance: '500.00',
-                                              type: 'debit')
+                                              type: 'debit' })
     end
 
     context 'Edge cases' do
@@ -74,7 +83,7 @@ describe Account do
 
   context '#print_statement' do
     it 'should be able to get statement' do
-      account2 = Account.new(statement)
+      account2 = Account.new(statement, transactions)
       allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
       account2.deposit(1000)
 

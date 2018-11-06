@@ -3,9 +3,9 @@ require 'date'
 class Account
   attr_reader :balance, :transactions
 
-  def initialize(statement = Statement.new)
+  def initialize(statement = Statement.new, transactions)
     @balance = 0
-    @transactions = []
+    @transactions = transactions
     @statement = statement
   end
 
@@ -14,10 +14,7 @@ class Account
     raise 'Deposit cannot be negative!' if amount.negative?
 
     @balance += amount
-    @transactions << { date: date_today,
-                       credit: format_price(amount),
-                       balance: format_price(@balance),
-                       type: 'credit' }
+    @transactions.add_deposit(amount, @balance)
   end
 
   def withdraw(amount)
@@ -26,23 +23,10 @@ class Account
     raise 'Withdrawal amount cannot be negative!' if amount.negative?
 
     @balance -= amount
-    @transactions << { date: date_today,
-                       debit: format_price(amount),
-                       balance: format_price(@balance),
-                       type: 'debit' }
+    @transactions.add_withdrawal(amount, @balance)
   end
 
   def print_statement
-    puts @statement.return_statement(@transactions)
-  end
-
-  private
-
-  def date_today
-    Date.today.strftime('%d/%m/%Y')
-  end
-
-  def format_price(price)
-    format('%.2f', price)
+    puts @statement.return_statement(@transactions.history)
   end
 end
