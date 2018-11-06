@@ -84,7 +84,9 @@ Run `rspec` in your terminal
 
 - I started with one class account that keeps track of balance and allows a user to deposit and withdraw money and a statement class that return a statement.
 
-- I then decided that the class account has too many responsibilities. I therefore created a third class which is responsibile for deposits and withdrawal.
+- I then decided that the class account has too many responsibilities. I therefore created a third class which is responsible for deposits and withdrawal.
+
+- After receiving feedback from Mark, I moved the formatting of price and date from transactions class to statement class. This left the transactions class with no behaviours. I therefore removed the transactions class after moving the history array to the account class.
 
 - I tested for edge cases such as:
   - User cannot enter a negative amount or a string
@@ -96,6 +98,6 @@ Run `rspec` in your terminal
 Pull Requests are always welcome.
 
 When you edit the code, please run bundle exec rspec to check all the tests pass.
-Also run the linter rubocop to formatting of your code before you git commit.
+Also run the linter rubocop  before you git commit.
 
 Ensure the PR description clearly describes the problem and solution. It should include the relevant issue number, if applicable.
