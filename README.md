@@ -1,6 +1,6 @@
 # Bank tech test
 
-[Motivation](#motivation) | [Build status](#build-status) | [Technologies](#technologies) | [User Stories](#user-stories) | [Running the App](#running-the-app) | [Running tests](#running-tests) | [Contributing](#contributing)
+[Motivation](#motivation) | [Build status](#build-status) | [Technologies](#technologies) | [User Stories](#user-stories) | [Running the App](#running-the-app) | [Running tests](#running-tests) | [Approach](#approach) | [Contributing](#contributing)
 
 ----
 A simple command-line banking application done in Ruby using Object Oriented Design(OOD) and Test driven development(TDD).
@@ -78,7 +78,20 @@ Date || Credit || Debit || Balance
 
 Run `rspec` in your terminal
 
-![tests](test.png)
+![tests](tests.png)
+
+##  <a name="approach">**Approach**</a>
+
+- I used TDD while solving this challenge
+
+- I started with one class account that keeps track of balance and allows a user to deposit and withdraw money and a statement class that return a statement.
+
+- I then decided that the class account has too many responsibilities. I therefore created a third class which is responsibile for deposits and withdrawal.
+
+- I tested for edge cases such as:
+  - User cannot enter a negative amount or a string
+  - User cannot withdraw more than available money in their account.
+
 
 ##  <a name="contributing">**Contributing**</a>
 
