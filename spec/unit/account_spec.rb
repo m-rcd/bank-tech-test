@@ -19,13 +19,11 @@ describe Account do
   subject(:account) { described_class.new(statement, transactions) }
 
   context '#deposit' do
-    it 'should save the transaction to transactions array' do
+    it 'should increase balance' do
       allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
+      account.deposit(1000)
 
-      expect(account.deposit(1000)).to eq({ date: '19/09/2018',
-                                              credit: '1000.00',
-                                              balance: '1000.00',
-                                              type: 'credit' })
+      expect(account.balance).to eq(1000)
     end
 
     context 'Edge cases' do
@@ -44,14 +42,12 @@ describe Account do
   end
 
   context '#Withdraw' do
-    it 'should return a hash with ' do
+    it 'should decrease balance ' do
       allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
       account.deposit(1000)
+      account.withdraw(500)
 
-      expect(account.withdraw(500)).to eq({ date: '19/09/2018',
-                                              debit: '500.00',
-                                              balance: '500.00',
-                                              type: 'debit' })
+      expect(account.balance).to eq(500)
     end
 
     context 'Edge cases' do

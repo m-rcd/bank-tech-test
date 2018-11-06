@@ -76,7 +76,7 @@ Date || Credit || Debit || Balance
 
 Run `rspec` in your terminal
 
-![tests](tests.png)
+![tests](rspec.png)
 
 ##  <a name="approach">**Approach**</a>
 
