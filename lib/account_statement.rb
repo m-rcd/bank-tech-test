@@ -1,12 +1,12 @@
 class Statement
   def return_statement(transactions)
     statement = header
-    transactions.each do |transaction|
+    transactions.reverse.each do |transaction|
       if credit?(transaction)
         statement += "\n#{transaction[:date]} || #{transaction[:credit]} ||"\
-        " || #{transaction[:balance]}\n"
+        " || #{transaction[:balance]}"
       else
-        statement += "#{transaction[:date]} || || #{transaction[:debit]}"\
+        statement += "\n#{transaction[:date]} || || #{transaction[:debit]}"\
         " || #{transaction[:balance]}"
       end
     end

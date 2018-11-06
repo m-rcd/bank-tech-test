@@ -13,7 +13,7 @@ describe 'Features Account' do
     end
 
     context 'Withdraw' do
-      it 'should be able to Withdraw money from account' do
+      it 'should be able to withdraw money from account' do
         account = Account.new
         account.deposit(1000)
         account.withdraw(500)
@@ -53,8 +53,8 @@ describe 'Features Account' do
           account.withdraw(500)
 
           expect { account.print_statement }.to output('Date || Credit || Debit ||'\
-            " Balance\n19/09/2018 || 1000.00 || || 1000.00\n19/09/2018 ||"\
-            " || 500.00 || 500.00\n").to_stdout
+            " Balance\n19/09/2018 || || 500.00 || 500.00\n19/09/2018 || 1000.00"\
+            " || || 1000.00\n").to_stdout
         end
       end
     end

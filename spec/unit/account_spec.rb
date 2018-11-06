@@ -8,7 +8,7 @@ describe Account do
   end
 
   context '#deposit' do
-    it 'should save the deposit transaction to transactions array' do
+    it 'should save the transaction to transactions array' do
       allow(Date).to receive(:today).and_return(Date.parse('19/09/2018'))
       account.deposit(1000)
 
