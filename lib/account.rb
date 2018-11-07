@@ -1,7 +1,7 @@
 require 'date'
 
 class Account
-  attr_reader :balance, :transactions
+  attr_reader :balance
 
   def initialize(statement = Statement.new)
     @balance = 0
