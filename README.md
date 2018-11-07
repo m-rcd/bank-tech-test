@@ -43,7 +43,10 @@ I can print a statement showing all my transactions
 
 ##  <a name="running-the-app">**Running the app**</a>
 
-- Clone this repository
+- Clone this repository:
+   `git clone https://github.com/m-rcd/bank-tech-test/`
+
+- Go into the repository: `cd bank-tech-test`
 
 - Run `bundle install`
 
