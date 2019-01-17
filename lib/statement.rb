@@ -4,7 +4,7 @@ class Statement
     history.reverse_each do |transaction|
       date = format_date(transaction[:date])
       balance = format_price(transaction[:balance])
-      
+
       if credit?(transaction)
         credit = format_price(transaction[:credit])
         statement += "\n#{date} || #{credit} || || #{balance}"
